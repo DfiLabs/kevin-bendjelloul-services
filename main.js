@@ -1,8 +1,8 @@
-/* Kevin Bendjelloul — Électricité & Services (static) */
+/* Kevin Bendjelloul - Électricité & Services (static) */
 
 const CONFIG = {
-  phoneDisplay: "06 00 00 00 00", // TODO: replace
-  phoneTel: "+33600000000", // TODO: replace (international format)
+  phoneDisplay: "06 32 63 77 23", // TODO: replace
+  phoneTel: "+33632637723", // TODO: replace (international format)
   email: "contact@exemple.fr", // TODO: replace
 };
 
@@ -86,7 +86,7 @@ function applyContactConfig() {
   // Update copy chips for placeholders
   $all("button[data-copy]").forEach((btn) => {
     const v = String(btn.getAttribute("data-copy") || "");
-    if (v === "+33600000000") btn.setAttribute("data-copy", CONFIG.phoneTel);
+    if (v === "+33632637723") btn.setAttribute("data-copy", CONFIG.phoneTel);
     if (v === "contact@exemple.fr") btn.setAttribute("data-copy", CONFIG.email);
   });
 
@@ -245,7 +245,7 @@ function wireMailtoForm() {
     const email = String(fd.get("email") || "").trim();
     const message = String(fd.get("message") || "").trim();
 
-    const subject = `Demande de devis — ${name || "Client"}`;
+    const subject = `Demande de devis - ${name || "Client"}`;
     const lines = [
       "Bonjour,",
       "",

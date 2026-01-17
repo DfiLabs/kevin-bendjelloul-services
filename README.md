@@ -1,4 +1,4 @@
-## Site vitrine — Kevin Bendjelloul (statique)
+## Site vitrine - Kevin Bendjelloul (statique)
 
 ### Modifier téléphone / email
 
