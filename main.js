@@ -339,6 +339,7 @@ function wireSpotlight() {
   let raf = 0;
   let lastX = 0;
   let lastY = 0;
+  let lastMoveAt = 0;
 
   const set = () => {
     raf = 0;
@@ -346,6 +347,7 @@ function wireSpotlight() {
     const y = Math.round((lastY / window.innerHeight) * 100);
     document.documentElement.style.setProperty("--spot-x", `${x}%`);
     document.documentElement.style.setProperty("--spot-y", `${y}%`);
+    lastMoveAt = Date.now();
   };
 
   window.addEventListener(
@@ -354,6 +356,37 @@ function wireSpotlight() {
       lastX = e.clientX;
       lastY = e.clientY;
       if (!raf) raf = window.requestAnimationFrame(set);
+    },
+    { passive: true }
+  );
+
+  // On mobile (or when no pointer move), drive spotlight by scroll for "wow" effect.
+  let raf2 = 0;
+  const setScrollGlow = () => {
+    raf2 = 0;
+    // If the user is actively moving the pointer, don't fight it.
+    if (Date.now() - lastMoveAt < 1200) return;
+    const vh = Math.max(1, window.innerHeight);
+    const doc = document.documentElement;
+    const maxScroll = Math.max(1, doc.scrollHeight - vh);
+    const p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+    const x = 50;
+    const y = Math.round(12 + p * 30); // 12%..42%
+    doc.style.setProperty("--spot-x", `${x}%`);
+    doc.style.setProperty("--spot-y", `${y}%`);
+  };
+  setScrollGlow();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!raf2) raf2 = window.requestAnimationFrame(setScrollGlow);
+    },
+    { passive: true }
+  );
+  window.addEventListener(
+    "resize",
+    () => {
+      if (!raf2) raf2 = window.requestAnimationFrame(setScrollGlow);
     },
     { passive: true }
   );
