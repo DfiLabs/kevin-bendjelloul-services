@@ -23,6 +23,27 @@ async function loadContentJson() {
 function applyContentJson(content) {
   if (!content || typeof content !== "object") return;
 
+  // Brand
+  const b = content.brand && typeof content.brand === "object" ? content.brand : null;
+  if (b) {
+    const nameEl = document.querySelector(".brand-name");
+    const subEl = document.querySelector(".brand-sub");
+    if (nameEl && typeof b.name === "string" && b.name.trim()) nameEl.textContent = b.name;
+    if (subEl && typeof b.subtitle === "string" && b.subtitle.trim()) subEl.textContent = b.subtitle;
+  }
+
+  // Hero
+  const hero = content.hero && typeof content.hero === "object" ? content.hero : null;
+  if (hero) {
+    const sub = document.querySelector("[data-hero-subheadline]");
+    if (sub && typeof hero.subheadline === "string" && hero.subheadline.trim()) sub.textContent = hero.subheadline;
+    // Optional photo: if provided, set as background image on hero
+    if (typeof hero.photo === "string" && hero.photo.trim()) {
+      const heroEl = document.querySelector(".hero");
+      if (heroEl) heroEl.style.backgroundImage = `url(${hero.photo})`;
+    }
+  }
+
   // Contact
   const c = content.contact && typeof content.contact === "object" ? content.contact : null;
   if (c) {
@@ -72,6 +93,101 @@ function applyContentJson(content) {
       const price = card.querySelector("[data-service-price]");
       if (price) price.textContent = typeof s.fromPrice === "string" ? s.fromPrice : "";
     });
+  }
+
+  // Proof pack (gallery, badges, testimonials)
+  const proof = content.proofPack && typeof content.proofPack === "object" ? content.proofPack : null;
+  if (proof) {
+    // Badges
+    const badgesWrap = document.querySelector("[data-badges]");
+    if (badgesWrap && Array.isArray(proof.badges)) {
+      badgesWrap.innerHTML = "";
+      proof.badges
+        .filter((x) => x && typeof x === "object" && x.enabled)
+        .slice(0, 8)
+        .forEach((x) => {
+          const t = typeof x.label === "string" ? x.label.trim() : "";
+          if (!t) return;
+          const el = document.createElement("span");
+          el.className = "badge";
+          el.textContent = t;
+          badgesWrap.appendChild(el);
+        });
+    }
+
+    // Gallery
+    const gallery = document.querySelector("[data-gallery]");
+    if (gallery && Array.isArray(proof.gallery)) {
+      gallery.innerHTML = "";
+      proof.gallery.slice(0, 12).forEach((g) => {
+        if (!g || typeof g !== "object") return;
+        const title = typeof g.title === "string" ? g.title : "";
+        const location = typeof g.location === "string" ? g.location : "";
+        const src = typeof g.src === "string" ? g.src : "";
+        const alt = typeof g.alt === "string" ? g.alt : title || "Réalisation";
+
+        const card = document.createElement("div");
+        card.className = "gallery-card";
+
+        const media = document.createElement("div");
+        media.className = "gallery-media";
+        if (src && src.trim()) {
+          const img = document.createElement("img");
+          img.loading = "lazy";
+          img.src = src;
+          img.alt = alt;
+          media.appendChild(img);
+        } else {
+          media.textContent = "Photo";
+        }
+
+        const body = document.createElement("div");
+        body.className = "gallery-body";
+        const t = document.createElement("div");
+        t.className = "gallery-title";
+        t.textContent = title || "Réalisation";
+        const loc = document.createElement("div");
+        loc.className = "gallery-loc";
+        loc.textContent = location || "";
+        body.appendChild(t);
+        body.appendChild(loc);
+
+        card.appendChild(media);
+        card.appendChild(body);
+        gallery.appendChild(card);
+      });
+    }
+
+    // Testimonials
+    const reviews = document.querySelector("[data-testimonials]");
+    if (reviews && Array.isArray(proof.testimonials)) {
+      reviews.innerHTML = "";
+      proof.testimonials.slice(0, 6).forEach((r) => {
+        if (!r || typeof r !== "object") return;
+        const rating = Number.isFinite(r.rating) ? r.rating : 5;
+        const stars = "★★★★★".slice(0, Math.max(0, Math.min(5, rating)));
+        const name = typeof r.name === "string" ? r.name : "Client";
+        const location = typeof r.location === "string" ? r.location : "";
+        const text = typeof r.text === "string" ? r.text : "";
+
+        const card = document.createElement("div");
+        card.className = "review";
+        const s = document.createElement("div");
+        s.className = "review-stars";
+        s.setAttribute("aria-label", `${rating} sur 5`);
+        s.textContent = stars;
+        const p = document.createElement("div");
+        p.className = "review-text";
+        p.textContent = text;
+        const m = document.createElement("div");
+        m.className = "review-meta";
+        m.textContent = `${name}${location ? " - " + location : ""}`;
+        card.appendChild(s);
+        card.appendChild(p);
+        card.appendChild(m);
+        reviews.appendChild(card);
+      });
+    }
   }
 }
 

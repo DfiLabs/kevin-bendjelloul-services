@@ -14,42 +14,82 @@
     }
   },
   "ctaReassurance": ["Devis clair", "Matériel identifié", "Nettoyage fin de chantier"],
+  "hero": {
+    "subheadline": "Électricien à Montpellier - dépannage, mise en sécurité, éclairage",
+    "photo": ""
+  },
   "serviceArea": {
     "primary": "Montpellier",
     "secondary": "Hérault (34)"
   },
+  "proofPack": {
+    "badges": [
+      { "label": "Électricien habilité", "enabled": true },
+      { "label": "Devis clair", "enabled": true },
+      { "label": "Matériel identifié", "enabled": true },
+      { "label": "Nettoyage fin de chantier", "enabled": true }
+    ],
+    "gallery": [
+      { "title": "Dépannage tableau", "location": "Montpellier", "src": "", "alt": "" },
+      { "title": "Mise en sécurité", "location": "Hérault", "src": "", "alt": "" },
+      { "title": "Pose luminaire", "location": "Montpellier", "src": "", "alt": "" },
+      { "title": "Rénovation", "location": "Hérault", "src": "", "alt": "" },
+      { "title": "Fin de chantier", "location": "Montpellier", "src": "", "alt": "" },
+      { "title": "Installation", "location": "Hérault", "src": "", "alt": "" }
+    ],
+    "testimonials": [
+      {
+        "name": "Client",
+        "location": "Montpellier",
+        "rating": 5,
+        "text": "Ponctuel, propre, efficace. Devis clair et explications simples."
+      },
+      {
+        "name": "Client",
+        "location": "Hérault",
+        "rating": 5,
+        "text": "Dépannage rapide, travail soigné. Je recommande."
+      },
+      {
+        "name": "Client",
+        "location": "Montpellier",
+        "rating": 5,
+        "text": "Très pro, matériel identifié, chantier laissé propre."
+      }
+    ]
+  },
   "services": [
     {
       "id": "electricite",
-      "title": "Électricité (dépannage)",
+      "title": "Urgence dépannage",
       "examples": ["Prise/interrupteur", "Tableau électrique", "Recherche de panne"],
       "turnaround": "Souvent sous 24-48h (selon disponibilité)",
       "fromPrice": "À partir de: sur devis"
     },
     {
       "id": "securite",
-      "title": "Mise en sécurité",
+      "title": "Mise en sécurité / conformité",
       "examples": ["Contrôle & diagnostic", "Remise en conformité (selon cas)", "Conseils et explications claires"],
       "turnaround": "Selon urgence",
       "fromPrice": "À partir de: sur devis"
     },
     {
       "id": "eclairage",
-      "title": "Éclairage & ambiance",
+      "title": "Éclairage & installations",
       "examples": ["Pose de luminaires", "Optimisation points lumineux", "Extérieur / sécurité"],
       "turnaround": "Sous 2-7 jours (selon planning)",
       "fromPrice": "À partir de: sur devis"
     },
     {
       "id": "tce",
-      "title": "Rénovation (tous corps d’état)",
+      "title": "Rénovation / chantier",
       "examples": ["Chantier coordonné", "Planning + points d’avancement", "Qualité de finitions"],
       "turnaround": "Sur planning",
       "fromPrice": "Sur devis"
     },
     {
       "id": "remise",
-      "title": "Remise en état (fin de chantier)",
+      "title": "Fin de chantier",
       "examples": ["Nettoyage fin de chantier", "Remise au propre", "Pré-remise des clés"],
       "turnaround": "Sous 48-72h (selon surface)",
       "fromPrice": "À partir de: sur devis"
