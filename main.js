@@ -159,6 +159,41 @@ function wireSpotlight() {
   );
 }
 
+function wireHeroParallax() {
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  let raf = 0;
+  const onScroll = () => {
+    raf = 0;
+    const r = hero.getBoundingClientRect();
+    // Only parallax while hero is near viewport
+    const vh = Math.max(1, window.innerHeight);
+    const progress = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+    const offset = Math.round((progress - 0.5) * 30); // -15..+15px
+    document.documentElement.style.setProperty("--hero-parallax", `${offset}px`);
+  };
+
+  onScroll();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!raf) raf = window.requestAnimationFrame(onScroll);
+    },
+    { passive: true }
+  );
+  window.addEventListener(
+    "resize",
+    () => {
+      if (!raf) raf = window.requestAnimationFrame(onScroll);
+    },
+    { passive: true }
+  );
+}
+
 function wireNav() {
   const toggle = $("[data-nav-toggle]");
   const menu = $("[data-nav-menu]");
@@ -190,6 +225,74 @@ function wireNav() {
   $all("a.nav-link", menu).forEach((a) => {
     a.addEventListener("click", close);
   });
+}
+
+function wireStickyHeaderAndActiveNav() {
+  const topbar = document.querySelector(".topbar");
+  const navLinks = $all('.nav-link[href^="#"]');
+  if (!topbar && !navLinks.length) return;
+
+  // Sticky header background on scroll
+  let raf = 0;
+  const onScroll = () => {
+    raf = 0;
+    if (topbar) topbar.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!raf) raf = window.requestAnimationFrame(onScroll);
+    },
+    { passive: true }
+  );
+
+  // Active section highlight (skip mobile menu button; highlight only hash links)
+  const links = navLinks.filter((a) => a.getAttribute("href") && a.getAttribute("href") !== "#top");
+  const items = [];
+  for (const a of links) {
+    const href = a.getAttribute("href");
+    if (!href || !href.startsWith("#")) continue;
+    const section = document.querySelector(href);
+    if (!section) continue;
+    items.push({ a, section, id: href.slice(1) });
+  }
+  if (!items.length) return;
+
+  const setActive = (id) => {
+    for (const it of items) {
+      const active = it.id === id;
+      it.a.classList.toggle("active", active);
+      if (active) it.a.setAttribute("aria-current", "page");
+      else it.a.removeAttribute("aria-current");
+    }
+  };
+
+  // Default to first visible or first link
+  setActive(items[0].id);
+
+  if (!("IntersectionObserver" in window)) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      // Pick the most visible intersecting section
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
+      if (!visible.length) return;
+      const el = visible[0].target;
+      const hit = items.find((x) => x.section === el);
+      if (hit) setActive(hit.id);
+    },
+    {
+      root: null,
+      // Activate a section when it enters the upper part of the viewport
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: [0, 0.08, 0.16, 0.25, 0.4, 0.6],
+    }
+  );
+
+  items.forEach((it) => io.observe(it.section));
 }
 
 function wireCopy() {
@@ -283,7 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
   applyContactConfig();
   wireReveal();
   wireSpotlight();
+  wireHeroParallax();
   wireNav();
+  wireStickyHeaderAndActiveNav();
   wireCopy();
   wireTilt();
   wireMailtoForm();

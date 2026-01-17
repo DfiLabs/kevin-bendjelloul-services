@@ -1,38 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KVB Énergie">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KVB Energie">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#48c6ff" />
-      <stop offset="0.55" stop-color="#00d4ff" />
-      <stop offset="1" stop-color="#ffc857" />
+    <linearGradient id="tri" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1A7CFF" />
+      <stop offset="0.55" stop-color="#18D5FF" />
+      <stop offset="1" stop-color="#FFC857" />
     </linearGradient>
-    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
-      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#48c6ff" flood-opacity="0.22" />
+    <radialGradient id="shine" cx="30%" cy="18%" r="85%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.70" />
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#1A7CFF" flood-opacity="0.20" />
       <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#091428" flood-opacity="0.10" />
     </filter>
-    <mask id="ring">
-      <rect x="6" y="6" width="52" height="52" rx="16" fill="white" />
-      <rect x="10" y="10" width="44" height="44" rx="14" fill="black" />
-    </mask>
   </defs>
 
-  <rect x="6" y="6" width="52" height="52" rx="16" fill="#ffffff" />
-  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#g)" opacity="0.22" />
-  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#g)" mask="url(#ring)" opacity="0.95" />
-
+  <!-- Rounded triangle (Apple-like) -->
   <path
-    d="M35 12L18 37h14l-5 15 19-25H32l3-15Z"
-    fill="#091428"
-    filter="url(#shadow)"
+    d="M32 8
+       C34.5 8 36.8 9.2 38.3 11.2
+       L53.6 33.0
+       C55.0 35.0 55.4 37.6 54.6 39.9
+       C53.8 42.2 51.9 44.0 49.6 44.7
+       L27.8 51.4
+       C25.5 52.1 23.0 51.6 21.1 50.1
+       C19.1 48.7 17.9 46.4 17.9 44.0
+       L17.9 20.0
+       C17.9 17.6 19.1 15.3 21.1 13.9
+       C23.0 12.4 25.5 11.9 27.8 12.6
+       L49.6 19.3
+       C51.9 20.0 53.8 21.8 54.6 24.1
+       C55.4 26.4 55.0 29.0 53.6 31.0
+       L38.3 52.8
+       C36.8 54.8 34.5 56 32 56
+       C29.5 56 27.2 54.8 25.7 52.8
+       L10.4 31.0
+       C9.0 29.0 8.6 26.4 9.4 24.1
+       C10.2 21.8 12.1 20.0 14.4 19.3
+       L36.2 12.6
+       C37.3 12.3 38.3 11.6 39.0 10.6
+       C39.9 9.1 41.0 8 42.8 8
+       Z"
+    fill="url(#tri)"
+    filter="url(#softShadow)"
   />
 
+  <!-- Light sheen -->
   <path
-    d="M44.5 18.5l3 1.2-1.2 3"
-    fill="none"
-    stroke="#091428"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    d="M32 11
+       C41 11 50 22 52 31
+       C52.6 33.8 52.4 36.4 51.6 38.6
+       C46 28 36 18 24 16
+       C26.5 13 29.2 11 32 11Z"
+    fill="url(#shine)"
     opacity="0.9"
+  />
+
+  <!-- Bolt -->
+  <path
+    d="M36.5 16.5
+       L24 33.5
+       H31.2
+       L28.5 47.5
+       L41 30.5
+       H33.8
+       Z"
+    fill="#ffffff"
+    opacity="0.96"
   />
 </svg>
 
