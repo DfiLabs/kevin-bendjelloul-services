@@ -1,10 +1,79 @@
 /* Kevin Bendjelloul - Électricité & Services (static) */
 
 const CONFIG = {
-  phoneDisplay: "06 32 63 77 23", // TODO: replace
-  phoneTel: "+33632637723", // TODO: replace (international format)
-  email: "contact@exemple.fr", // TODO: replace
+  phoneDisplay: "06 32 63 77 23",
+  phoneTel: "+33632637723",
+  email: "kevin.benjelloul@gmail.com",
+  publishEmailInSchema: false,
+  whatsappEnabled: true,
+  whatsappMessage: "Bonjour, je souhaite un devis / une intervention. Zone: Montpellier/Hérault. Mon besoin:",
 };
+
+async function loadContentJson() {
+  try {
+    const res = await fetch("./content.json", { cache: "no-store" });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json && typeof json === "object" ? json : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function applyContentJson(content) {
+  if (!content || typeof content !== "object") return;
+
+  // Contact
+  const c = content.contact && typeof content.contact === "object" ? content.contact : null;
+  if (c) {
+    if (typeof c.phoneDisplay === "string") CONFIG.phoneDisplay = c.phoneDisplay;
+    if (typeof c.phoneTel === "string") CONFIG.phoneTel = c.phoneTel;
+    if (typeof c.email === "string") CONFIG.email = c.email;
+    if (typeof c.publishEmailInSchema === "boolean") CONFIG.publishEmailInSchema = c.publishEmailInSchema;
+    if (c.whatsapp && typeof c.whatsapp === "object") {
+      if (typeof c.whatsapp.enabled === "boolean") CONFIG.whatsappEnabled = c.whatsapp.enabled;
+      if (typeof c.whatsapp.message === "string") CONFIG.whatsappMessage = c.whatsapp.message;
+    }
+  }
+
+  // CTA reassurance line
+  if (Array.isArray(content.ctaReassurance)) {
+    const items = content.ctaReassurance.filter((x) => typeof x === "string" && x.trim()).slice(0, 4);
+    const el = document.querySelector("[data-cta-reassurance]");
+    if (el && items.length) el.textContent = items.join(" • ");
+  }
+
+  // Service enhancements (bullets + meta)
+  if (Array.isArray(content.services)) {
+    const byId = new Map();
+    content.services.forEach((s) => {
+      if (s && typeof s === "object" && typeof s.id === "string") byId.set(s.id, s);
+    });
+
+    document.querySelectorAll("[data-service-id]").forEach((card) => {
+      const id = card.getAttribute("data-service-id");
+      if (!id) return;
+      const s = byId.get(id);
+      if (!s) return;
+
+      const ul = card.querySelector("[data-service-examples]");
+      if (ul) {
+        ul.innerHTML = "";
+        const ex = Array.isArray(s.examples) ? s.examples.filter((x) => typeof x === "string" && x.trim()).slice(0, 3) : [];
+        ex.forEach((t) => {
+          const li = document.createElement("li");
+          li.textContent = t;
+          ul.appendChild(li);
+        });
+      }
+
+      const turn = card.querySelector("[data-service-turnaround]");
+      if (turn) turn.textContent = typeof s.turnaround === "string" ? s.turnaround : "";
+      const price = card.querySelector("[data-service-price]");
+      if (price) price.textContent = typeof s.fromPrice === "string" ? s.fromPrice : "";
+    });
+  }
+}
 
 function $(sel, root = document) {
   return root.querySelector(sel);
@@ -80,14 +149,28 @@ function applyContactConfig() {
   // Update email links
   $all("a[data-email-link]").forEach((a) => {
     a.href = `mailto:${CONFIG.email}`;
-    a.textContent = CONFIG.email;
+    // Do not print the raw email unless the element already contains it
+    if (a.textContent.includes("@")) a.textContent = CONFIG.email;
+  });
+
+  // WhatsApp links (optional)
+  const digits = CONFIG.phoneTel.replace(/[^\d+]/g, "").replace("+", "");
+  const waUrl = `https://wa.me/${encodeURIComponent(digits)}?text=${encodeURIComponent(CONFIG.whatsappMessage || "")}`;
+  $all("a[data-whatsapp-link]").forEach((a) => {
+    if (!CONFIG.whatsappEnabled) {
+      a.setAttribute("hidden", "true");
+      return;
+    }
+    a.removeAttribute("hidden");
+    a.href = waUrl;
+    a.target = "_blank";
+    a.rel = "noreferrer";
   });
 
   // Update copy chips for placeholders
   $all("button[data-copy]").forEach((btn) => {
     const v = String(btn.getAttribute("data-copy") || "");
     if (v === "+33632637723") btn.setAttribute("data-copy", CONFIG.phoneTel);
-    if (v === "contact@exemple.fr") btn.setAttribute("data-copy", CONFIG.email);
   });
 
   // Update JSON-LD if present
@@ -96,7 +179,8 @@ function applyContactConfig() {
     try {
       const parsed = JSON.parse(ld.textContent);
       parsed.telephone = CONFIG.phoneTel;
-      parsed.email = CONFIG.email;
+      if (CONFIG.publishEmailInSchema) parsed.email = CONFIG.email;
+      else if ("email" in parsed) delete parsed.email;
       parsed.url = `${location.origin}${location.pathname}`;
       ld.textContent = JSON.stringify(parsed, null, 2);
     } catch (_) {
@@ -380,9 +464,11 @@ function wireScrollTop() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   setYear();
   setAvailabilityHint();
+  const content = await loadContentJson();
+  applyContentJson(content);
   applyContactConfig();
   wireReveal();
   wireSpotlight();

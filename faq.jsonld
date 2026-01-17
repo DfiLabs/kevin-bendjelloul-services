@@ -1,0 +1,39 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Intervenez-vous sur Montpellier et dans tout l’Hérault ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Intervention sur Montpellier et dans l’Hérault (34). Les déplacements se font selon le chantier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se passe le devis ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Devis clair. Le matériel est identifié quand c’est nécessaire, et les délais sont annoncés de façon réaliste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Proposez-vous WhatsApp pour une demande rapide ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Vous pouvez envoyer votre demande sur WhatsApp (photos et contexte)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pouvez-vous prendre des chantiers tous corps d’état ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Selon le projet, oui. Possibilité d’extension sur des chantiers plus importants avec une équipe formée et une coordination adaptée."
+      }
+    }
+  ]
+}
+

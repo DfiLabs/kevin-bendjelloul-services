@@ -1,0 +1,68 @@
+{
+  "brand": {
+    "name": "KVB Énergie",
+    "subtitle": "Électricien habilité - Montpellier & Hérault"
+  },
+  "contact": {
+    "phoneDisplay": "06 32 63 77 23",
+    "phoneTel": "+33632637723",
+    "email": "kevin.benjelloul@gmail.com",
+    "publishEmailInSchema": false,
+    "whatsapp": {
+      "enabled": true,
+      "message": "Bonjour, je souhaite un devis / une intervention. Zone: Montpellier/Hérault. Mon besoin:"
+    }
+  },
+  "ctaReassurance": ["Devis clair", "Matériel identifié", "Nettoyage fin de chantier"],
+  "serviceArea": {
+    "primary": "Montpellier",
+    "secondary": "Hérault (34)"
+  },
+  "services": [
+    {
+      "id": "electricite",
+      "title": "Électricité (dépannage)",
+      "examples": ["Prise/interrupteur", "Tableau électrique", "Recherche de panne"],
+      "turnaround": "Souvent sous 24-48h (selon disponibilité)",
+      "fromPrice": "À partir de: sur devis"
+    },
+    {
+      "id": "securite",
+      "title": "Mise en sécurité",
+      "examples": ["Contrôle & diagnostic", "Remise en conformité (selon cas)", "Conseils et explications claires"],
+      "turnaround": "Selon urgence",
+      "fromPrice": "À partir de: sur devis"
+    },
+    {
+      "id": "eclairage",
+      "title": "Éclairage & ambiance",
+      "examples": ["Pose de luminaires", "Optimisation points lumineux", "Extérieur / sécurité"],
+      "turnaround": "Sous 2-7 jours (selon planning)",
+      "fromPrice": "À partir de: sur devis"
+    },
+    {
+      "id": "tce",
+      "title": "Rénovation (tous corps d’état)",
+      "examples": ["Chantier coordonné", "Planning + points d’avancement", "Qualité de finitions"],
+      "turnaround": "Sur planning",
+      "fromPrice": "Sur devis"
+    },
+    {
+      "id": "remise",
+      "title": "Remise en état (fin de chantier)",
+      "examples": ["Nettoyage fin de chantier", "Remise au propre", "Pré-remise des clés"],
+      "turnaround": "Sous 48-72h (selon surface)",
+      "fromPrice": "À partir de: sur devis"
+    }
+  ],
+  "legal": {
+    "companyName": "MONSIEUR KEVIN BENDJELLOUL",
+    "siren": "990 996 720",
+    "siret": "990 996 720 00019",
+    "vat": "FR21990996720",
+    "ape": "8121Z - Nettoyage courant des bâtiments",
+    "created": "08 septembre 2025",
+    "address": "Chemin des Pins d’Urbain 23, 34370 Cazouls‑lès‑Béziers"
+  }
+}
+

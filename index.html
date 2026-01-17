@@ -23,7 +23,7 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "Electrician",
         "name": "MONSIEUR KEVIN BENDJELLOUL",
         "alternateName": "KVB Énergie",
         "address": {
@@ -35,8 +35,48 @@
         },
         "areaServed": ["Montpellier", "Hérault", "34"],
         "url": "",
-        "email": "contact@exemple.fr",
         "telephone": "+33632637723"
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Intervenez-vous sur Montpellier et dans tout l’Hérault ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Intervention sur Montpellier et dans l’Hérault (34). Les déplacements se font selon le chantier."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment se passe le devis ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Devis clair. Le matériel est identifié quand c’est nécessaire, et les délais sont annoncés de façon réaliste."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Proposez-vous WhatsApp pour une demande rapide ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Vous pouvez envoyer votre demande sur WhatsApp (photos et contexte)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pouvez-vous prendre des chantiers tous corps d’état ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Selon le projet, oui. Possibilité d’extension sur des chantiers plus importants avec une équipe formée et une coordination adaptée."
+            }
+          }
+        ]
       }
     </script>
   </head>
@@ -95,11 +135,12 @@
             <div class="hero-actions">
               <a class="btn btn-primary" href="#contact">Demander un devis</a>
               <a class="btn btn-ghost" href="tel:+33632637723" data-phone-link>Appeler</a>
+              <a class="btn btn-ghost" href="#" data-whatsapp-link>WhatsApp</a>
             </div>
 
             <p class="micro">
               <span class="dot"></span>
-              <span>Réponse rapide • Créneaux flexibles • Travail garanti</span>
+              <span data-cta-reassurance>Devis clair • Matériel identifié • Nettoyage fin de chantier</span>
             </p>
           </div>
 
@@ -167,7 +208,7 @@
           </div>
 
           <div class="grid cards">
-            <article class="card reveal" data-tilt>
+            <article class="card reveal" data-tilt data-service-id="electricite">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -180,10 +221,14 @@
               </div>
               <h3>Électricité (dépannage)</h3>
               <p>Recherche de panne, remplacement de prise/interrupteur, éclairage, sécurisation.</p>
-              <p class="card-foot">Intervention rapide • Explications claires</p>
+              <ul class="service-list" data-service-examples></ul>
+              <div class="service-meta">
+                <span class="meta-pill" data-service-turnaround></span>
+                <span class="meta-pill" data-service-price></span>
+              </div>
             </article>
 
-            <article class="card reveal" data-tilt>
+            <article class="card reveal" data-tilt data-service-id="tce">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -196,10 +241,14 @@
               </div>
               <h3>Rénovation (tous corps d’état)</h3>
               <p>Extension possible sur chantiers plus importants avec une équipe formée, selon projet et planning.</p>
-              <p class="card-foot">Coordination • Qualité • Délais réalistes</p>
+              <ul class="service-list" data-service-examples></ul>
+              <div class="service-meta">
+                <span class="meta-pill" data-service-turnaround></span>
+                <span class="meta-pill" data-service-price></span>
+              </div>
             </article>
 
-            <article class="card reveal" data-tilt>
+            <article class="card reveal" data-tilt data-service-id="remise">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -224,10 +273,14 @@
               </div>
               <h3>Remise en état (fin de chantier)</h3>
               <p>Nettoyage, remise au propre, finitions. Idéal après travaux ou avant remise des clés.</p>
-              <p class="card-foot">Propre • Rapide • Soigné</p>
+              <ul class="service-list" data-service-examples></ul>
+              <div class="service-meta">
+                <span class="meta-pill" data-service-turnaround></span>
+                <span class="meta-pill" data-service-price></span>
+              </div>
             </article>
 
-            <article class="card reveal" data-tilt>
+            <article class="card reveal" data-tilt data-service-id="eclairage">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -252,10 +305,14 @@
               </div>
               <h3>Éclairage & ambiance</h3>
               <p>Pose/remplacement de luminaires, optimisation des points lumineux, extérieur.</p>
-              <p class="card-foot">Confort • Sécurité • Esthétique</p>
+              <ul class="service-list" data-service-examples></ul>
+              <div class="service-meta">
+                <span class="meta-pill" data-service-turnaround></span>
+                <span class="meta-pill" data-service-price></span>
+              </div>
             </article>
 
-            <article class="card reveal" data-tilt>
+            <article class="card reveal" data-tilt data-service-id="securite">
               <div class="card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -275,7 +332,11 @@
               </div>
               <h3>Mise en sécurité</h3>
               <p>Conseils, contrôles, remise en ordre et vérifications sur installations existantes.</p>
-              <p class="card-foot">Prévention • Conformité • Sérénité</p>
+              <ul class="service-list" data-service-examples></ul>
+              <div class="service-meta">
+                <span class="meta-pill" data-service-turnaround></span>
+                <span class="meta-pill" data-service-price></span>
+              </div>
             </article>
 
             <article class="card reveal" data-tilt>
@@ -398,10 +459,12 @@
         <div class="container">
           <div class="section-head reveal">
             <h2>Mentions légales</h2>
-            <p class="section-sub">Informations d’identification de l’entreprise.</p>
+            <p class="section-sub">Informations d’identification de l’entreprise (affichage discret).</p>
           </div>
 
-          <div class="legal reveal">
+          <details class="legal reveal">
+            <summary class="legal-summary">Afficher les informations légales</summary>
+
             <div class="legal-grid">
               <div class="legal-item">
                 <div class="legal-k">Dénomination</div>
@@ -446,14 +509,48 @@
               >
                 Ouvrir l’adresse sur Maps
               </a>
-              <button class="btn btn-primary" type="button" data-copy="SIREN: 990 996 720 | SIRET: 990 996 720 00019 | TVA: FR21990996720">
+              <button class="btn btn-ghost" type="button" data-copy="SIREN: 990 996 720 | SIRET: 990 996 720 00019 | TVA: FR21990996720">
                 Copier SIREN / SIRET / TVA
               </button>
             </div>
 
             <p class="fineprint">
-              Ce site est une vitrine. Pour toute question juridique (CGU/CGV, politique de confidentialité, cookies),
-              adaptez ces mentions selon votre activité.
+              Mentions légales, confidentialité et cookies: voir les sections ci-dessous.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Politique de confidentialité</h2>
+            <p class="section-sub">
+              Le site est une vitrine statique. Aucun compte n’est créé et aucune donnée n’est enregistrée sur un serveur
+              via ce site.
+            </p>
+          </div>
+          <div class="section-card reveal">
+            <p class="section-sub">
+              Si vous contactez via téléphone/WhatsApp/email, les échanges restent privés et servent uniquement à traiter
+              votre demande (devis, intervention, suivi). Les données ne sont pas revendues.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="cookies">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Cookies</h2>
+            <p class="section-sub">
+              Ce site n’utilise pas de cookies publicitaires. Sans analytics, aucun bandeau cookies n’est nécessaire.
+            </p>
+          </div>
+          <div class="section-card reveal">
+            <p class="section-sub">
+              Si vous ajoutez plus tard des outils de mesure d’audience (analytics), mettez à jour cette section et
+              affichez un bandeau de consentement.
             </p>
           </div>
         </div>
@@ -468,6 +565,28 @@
             </p>
           </div>
 
+          <div class="section-card reveal" id="faq">
+            <h3>FAQ</h3>
+            <div class="faq">
+              <details class="faq-item">
+                <summary>Intervenez-vous sur Montpellier et dans tout l’Hérault ?</summary>
+                <p>Oui. Intervention sur Montpellier et dans l’Hérault (34). Les déplacements se font selon le chantier.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Comment se passe le devis ?</summary>
+                <p>Devis clair. Le matériel est identifié quand c’est nécessaire, et les délais sont annoncés de façon réaliste.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Proposez-vous WhatsApp pour une demande rapide ?</summary>
+                <p>Oui. Vous pouvez envoyer votre demande sur WhatsApp (photos et contexte).</p>
+              </details>
+              <details class="faq-item">
+                <summary>Pouvez-vous prendre des chantiers tous corps d’état ?</summary>
+                <p>Selon le projet, oui. Possibilité d’extension sur des chantiers plus importants avec une équipe formée et une coordination adaptée.</p>
+              </details>
+            </div>
+          </div>
+
           <div class="contact-grid">
             <div class="contact-card reveal" data-tilt>
               <div class="contact-title">Coordonnées</div>
@@ -479,10 +598,10 @@
                 </div>
               </div>
               <div class="contact-row">
-                <div class="contact-k">Email</div>
+                <div class="contact-k">Messages</div>
                 <div class="contact-v">
-                  <a href="mailto:contact@exemple.fr" data-email-link>contact@exemple.fr</a>
-                  <button class="chip" type="button" data-copy="contact@exemple.fr">Copier</button>
+                  <a class="chip" href="#" data-whatsapp-link>WhatsApp</a>
+                  <a class="chip" href="#" data-email-link>Envoyer un email</a>
                 </div>
               </div>
               <div class="contact-row">
@@ -558,6 +677,10 @@
         </div>
         <div class="footer-right">
           <a class="footer-link" href="#mentions">Mentions légales</a>
+          <span class="footer-sep" aria-hidden="true"></span>
+          <a class="footer-link" href="#privacy">Confidentialité</a>
+          <span class="footer-sep" aria-hidden="true"></span>
+          <a class="footer-link" href="#cookies">Cookies</a>
           <span class="footer-sep" aria-hidden="true"></span>
           <span class="footer-copy">© <span data-year></span></span>
         </div>

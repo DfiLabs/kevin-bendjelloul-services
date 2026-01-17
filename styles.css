@@ -682,6 +682,42 @@ h2 {
   font-size: var(--small);
   line-height: var(--normal);
 }
+
+.service-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: var(--small);
+  line-height: var(--normal);
+}
+.service-list:empty {
+  display: none;
+}
+.service-list li {
+  margin: 4px 0;
+}
+
+.service-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.service-meta:empty {
+  display: none;
+}
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(2, 6, 23, 0.86);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
 .card-foot {
   margin-top: 10px !important;
   color: var(--muted) !important;
@@ -796,6 +832,30 @@ h2 {
   padding: 16px 16px;
   box-shadow: 0 18px 50px rgba(9, 20, 40, 0.14);
 }
+.legal[open] {
+  box-shadow: 0 26px 80px rgba(2, 6, 23, 0.14);
+}
+.legal-summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 800;
+  padding: 10px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  background: rgba(255, 255, 255, 0.80);
+}
+.legal-summary::-webkit-details-marker {
+  display: none;
+}
+.legal-summary::after {
+  content: "⌄";
+  float: right;
+  opacity: 0.7;
+  transform: translateY(1px);
+}
+.legal[open] .legal-summary::after {
+  content: "⌃";
+}
 .legal-grid {
   display: grid;
   gap: 12px;
@@ -827,6 +887,56 @@ h2 {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.section-card {
+  margin: 18px 0 0;
+  border-radius: var(--radius2);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 16px 16px;
+  box-shadow: var(--shadow);
+}
+
+.section-card h3 {
+  margin: 0;
+  font-size: var(--h3);
+  letter-spacing: -0.1px;
+}
+
+.faq {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+.faq-item {
+  border-radius: 16px;
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 10px 12px;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: rgba(2, 6, 23, 0.90);
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "+";
+  float: right;
+  opacity: 0.7;
+}
+.faq-item[open] summary::after {
+  content: "–";
+}
+.faq-item p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: var(--small);
+  line-height: var(--normal);
 }
 
 .contact-grid {
