@@ -289,6 +289,27 @@ main {
   overflow: hidden;
 }
 
+.hero.has-hero-photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero.has-hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(246, 247, 251, 0.92) 0%, rgba(246, 247, 251, 0.86) 45%, rgba(246, 247, 251, 0.60) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero.has-hero-photo .hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.hero.has-hero-photo .hero-bg {
+  opacity: 0.55;
+}
+
 .hero-bg {
   position: absolute;
   inset: -80px -80px auto -80px;
@@ -500,6 +521,16 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.02);
+  filter: saturate(1.12) contrast(1.06);
+  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+}
+
+@media (hover: hover) {
+  .gallery-card:hover .gallery-media img {
+    transform: scale(1.06);
+    filter: saturate(1.18) contrast(1.08);
+  }
 }
 .gallery-body {
   padding: 12px 12px;

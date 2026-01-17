@@ -16,7 +16,7 @@
   "ctaReassurance": ["Devis clair", "Matériel identifié", "Nettoyage fin de chantier"],
   "hero": {
     "subheadline": "Électricien à Montpellier - dépannage, mise en sécurité, éclairage",
-    "photo": ""
+    "photo": "https://images.pexels.com/photos/21812143/pexels-photo-21812143.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   "serviceArea": {
     "primary": "Montpellier",
@@ -30,12 +30,42 @@
       { "label": "Nettoyage fin de chantier", "enabled": true }
     ],
     "gallery": [
-      { "title": "Dépannage tableau", "location": "Montpellier", "src": "", "alt": "" },
-      { "title": "Mise en sécurité", "location": "Hérault", "src": "", "alt": "" },
-      { "title": "Pose luminaire", "location": "Montpellier", "src": "", "alt": "" },
-      { "title": "Rénovation", "location": "Hérault", "src": "", "alt": "" },
-      { "title": "Fin de chantier", "location": "Montpellier", "src": "", "alt": "" },
-      { "title": "Installation", "location": "Hérault", "src": "", "alt": "" }
+      {
+        "title": "Dépannage tableau",
+        "location": "Montpellier",
+        "src": "https://images.pexels.com/photos/28950842/pexels-photo-28950842.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tableau électrique avec disjoncteurs et câblage"
+      },
+      {
+        "title": "Câblage / diagnostic",
+        "location": "Montpellier",
+        "src": "https://images.pexels.com/photos/21812143/pexels-photo-21812143.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Électricien travaillant sur des câbles"
+      },
+      {
+        "title": "Armoire électrique",
+        "location": "Hérault",
+        "src": "https://images.pexels.com/photos/27862198/pexels-photo-27862198.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Armoire électrique et câblage"
+      },
+      {
+        "title": "Tableau / interrupteurs",
+        "location": "Hérault",
+        "src": "https://images.pexels.com/photos/27862199/pexels-photo-27862199.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Tableau électrique avec interrupteurs et fils"
+      },
+      {
+        "title": "Mesures & contrôle",
+        "location": "Montpellier",
+        "src": "https://images.pexels.com/photos/10185562/pexels-photo-10185562.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Multimètre numérique (mesure électrique)"
+      },
+      {
+        "title": "Outillage",
+        "location": "Hérault",
+        "src": "https://images.pexels.com/photos/5853932/pexels-photo-5853932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Pince et tournevis sur surface de travail"
+      }
     ],
     "testimonials": [
       {

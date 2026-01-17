@@ -40,7 +40,13 @@ function applyContentJson(content) {
     // Optional photo: if provided, set as background image on hero
     if (typeof hero.photo === "string" && hero.photo.trim()) {
       const heroEl = document.querySelector(".hero");
-      if (heroEl) heroEl.style.backgroundImage = `url(${hero.photo})`;
+      if (heroEl) {
+        heroEl.style.backgroundImage = `url(${hero.photo})`;
+        heroEl.classList.add("has-hero-photo");
+      }
+    } else {
+      const heroEl = document.querySelector(".hero");
+      if (heroEl) heroEl.classList.remove("has-hero-photo");
     }
   }
 
