@@ -225,8 +225,8 @@ function wireTilt() {
       const r = el.getBoundingClientRect();
       const px = (e.clientX - r.left) / Math.max(1, r.width);
       const py = (e.clientY - r.top) / Math.max(1, r.height);
-      const ry = (px - 0.5) * 10; // left/right
-      const rx = (0.5 - py) * 7; // up/down
+      const ry = (px - 0.5) * 6; // left/right (subtle)
+      const rx = (0.5 - py) * 4; // up/down (subtle)
       setTilt(el, rx, ry);
     });
     el.addEventListener("pointerleave", () => setTilt(el, 0, 0));
