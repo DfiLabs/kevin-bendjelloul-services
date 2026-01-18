@@ -433,6 +433,41 @@ function wireHeroParallax() {
   );
 }
 
+function wireScrollWowGlow() {
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  let raf = 0;
+  const set = () => {
+    raf = 0;
+    const vh = Math.max(1, window.innerHeight);
+    const doc = document.documentElement;
+    const maxScroll = Math.max(1, doc.scrollHeight - vh);
+    const p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+
+    // Move glow down the page as you scroll (desktop + mobile)
+    const y = Math.round(16 + p * 64); // 16%..80%
+    doc.style.setProperty("--scroll-glow-x", "50%");
+    doc.style.setProperty("--scroll-glow-y", `${y}%`);
+  };
+
+  set();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!raf) raf = window.requestAnimationFrame(set);
+    },
+    { passive: true }
+  );
+  window.addEventListener(
+    "resize",
+    () => {
+      if (!raf) raf = window.requestAnimationFrame(set);
+    },
+    { passive: true }
+  );
+}
+
 function wireNav() {
   const toggle = $("[data-nav-toggle]");
   const menu = $("[data-nav-menu]");
@@ -628,6 +663,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireReveal();
   wireSpotlight();
   wireHeroParallax();
+  wireScrollWowGlow();
   wireNav();
   wireStickyHeaderAndActiveNav();
   wireCopy();
