@@ -134,6 +134,7 @@ function applyContentJson(content) {
 
         const card = document.createElement("div");
         card.className = "gallery-card";
+        card.setAttribute("data-parallax", "42");
 
         const media = document.createElement("div");
         media.className = "gallery-media";
@@ -178,6 +179,7 @@ function applyContentJson(content) {
 
         const card = document.createElement("div");
         card.className = "review";
+        card.setAttribute("data-parallax", "26");
         const s = document.createElement("div");
         s.className = "review-stars";
         s.setAttribute("aria-label", `${rating} sur 5`);
@@ -433,6 +435,53 @@ function wireHeroParallax() {
   );
 }
 
+function wireElementParallax() {
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  // Only enable the heavy parallax on desktop for a real "wow"
+  const mq = window.matchMedia("(min-width: 900px)");
+  if (!mq.matches) return;
+
+  const elements = Array.from(document.querySelectorAll("[data-parallax]"));
+  if (!elements.length) return;
+
+  const visible = new Set();
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) visible.add(e.target);
+        else visible.delete(e.target);
+      }
+    },
+    { threshold: 0, rootMargin: "200px 0px 200px 0px" }
+  );
+  elements.forEach((el) => io.observe(el));
+
+  let raf = 0;
+  const tick = () => {
+    raf = 0;
+    const vh = Math.max(1, window.innerHeight);
+    const center = vh / 2;
+    for (const el of visible) {
+      const strength = Number.parseFloat(el.getAttribute("data-parallax") || "0");
+      if (!Number.isFinite(strength) || strength === 0) continue;
+      const r = el.getBoundingClientRect();
+      const elCenter = r.top + r.height / 2;
+      const delta = (elCenter - center) / vh; // -0.5..0.5-ish
+      const y = Math.max(-strength, Math.min(strength, -delta * strength * 2));
+      el.style.setProperty("--py", `${y}px`);
+    }
+  };
+
+  const onScroll = () => {
+    if (!raf) raf = window.requestAnimationFrame(tick);
+  };
+  tick();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+}
+
 function wireScrollWowGlow() {
   const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReduced) return;
@@ -667,6 +716,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireReveal();
   wireSpotlight();
   wireHeroParallax();
+  wireElementParallax();
   wireScrollWowGlow();
   wireNav();
   wireStickyHeaderAndActiveNav();

@@ -16,7 +16,7 @@
   "ctaReassurance": ["Devis clair", "Matériel identifié", "Nettoyage fin de chantier"],
   "hero": {
     "subheadline": "Électricien à Montpellier - dépannage, mise en sécurité, éclairage",
-    "photo": "https://images.pexels.com/photos/21812143/pexels-photo-21812143.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    "photo": "https://images.pexels.com/photos/8381832/pexels-photo-8381832.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   "serviceArea": {
     "primary": "Montpellier",
@@ -37,10 +37,10 @@
         "alt": "Tableau électrique avec disjoncteurs et câblage"
       },
       {
-        "title": "Câblage / diagnostic",
+        "title": "Câblage (gros plan)",
         "location": "Montpellier",
-        "src": "https://images.pexels.com/photos/21812143/pexels-photo-21812143.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        "alt": "Électricien travaillant sur des câbles"
+        "src": "https://images.pexels.com/photos/12266914/pexels-photo-12266914.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Gros plan sur des câbles électriques"
       },
       {
         "title": "Armoire électrique",
@@ -59,6 +59,12 @@
         "location": "Montpellier",
         "src": "https://images.pexels.com/photos/10185562/pexels-photo-10185562.jpeg?auto=compress&cs=tinysrgb&w=1200",
         "alt": "Multimètre numérique (mesure électrique)"
+      },
+      {
+        "title": "Cuivre / câbles",
+        "location": "Hérault",
+        "src": "https://images.pexels.com/photos/5279317/pexels-photo-5279317.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "alt": "Gros plan sur des fils de cuivre"
       },
       {
         "title": "Outillage",

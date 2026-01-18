@@ -559,6 +559,8 @@ h1 {
   background: rgba(255, 255, 255, 0.86);
   overflow: hidden;
   box-shadow: var(--shadow);
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
 }
 .gallery-media {
   aspect-ratio: 4 / 3;
@@ -644,6 +646,8 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.06);
   padding: 16px 16px;
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
 }
 .review-stars {
   color: rgba(255, 200, 87, 0.95);
