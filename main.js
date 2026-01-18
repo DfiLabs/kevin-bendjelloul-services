@@ -445,10 +445,14 @@ function wireScrollWowGlow() {
     const maxScroll = Math.max(1, doc.scrollHeight - vh);
     const p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
 
-    // Move glow down the page as you scroll (desktop + mobile)
-    const y = Math.round(16 + p * 64); // 16%..80%
-    doc.style.setProperty("--scroll-glow-x", "50%");
+    // Move glow down + side-to-side as you scroll (more visible on desktop)
+    const y = Math.round(12 + p * 72); // 12%..84%
+    const wave = Math.sin(p * Math.PI * 2);
+    const x = Math.round(50 + wave * 28); // 22%..78%
+    doc.style.setProperty("--scroll-glow-x", `${x}%`);
     doc.style.setProperty("--scroll-glow-y", `${y}%`);
+    doc.style.setProperty("--wow-x", `${x}%`);
+    doc.style.setProperty("--wow-y", `${y}%`);
   };
 
   set();

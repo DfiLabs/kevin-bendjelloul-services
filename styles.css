@@ -36,6 +36,10 @@
   --spot-y: 12%;
   --scroll-glow-x: 50%;
   --scroll-glow-y: 18%;
+  --wow-x: 50%;
+  --wow-y: 18%;
+  --wow-intensity: 0.28;
+  --wow-size: 900px;
 }
 
 *,
@@ -100,6 +104,34 @@ body::after {
     );
   opacity: 0.28;
   z-index: 0;
+}
+
+.scroll-wow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+      var(--wow-size) var(--wow-size) at var(--wow-x) var(--wow-y),
+      rgba(26, 124, 255, 0.32),
+      rgba(24, 213, 255, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      calc(var(--wow-size) + 300px) calc(var(--wow-size) + 300px) at 70% calc(var(--wow-y) + 10%),
+      rgba(255, 200, 87, 0.18),
+      transparent 62%
+    );
+  mix-blend-mode: screen;
+  opacity: var(--wow-intensity);
+  transition: opacity 0.35s var(--ease);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --wow-intensity: 0.55;
+    --wow-size: 1100px;
+  }
 }
 
 .container {
