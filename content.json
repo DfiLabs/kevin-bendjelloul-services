@@ -75,22 +75,28 @@
     ],
     "testimonials": [
       {
-        "name": "Client",
-        "location": "Montpellier",
+        "name": "Aurelia M.",
+        "date": "Posté le 08 sept. 2025",
+        "service": "Installation électrique",
         "rating": 5,
-        "text": "Ponctuel, propre, efficace. Devis clair et explications simples."
+        "text": "Kevin a fait du bon boulot en électricité et menuiserie, mise en place d’un digicode et remise en service (branchements complexes) d’un parlophone d’immeuble. Bon rapport qualité/prix, serviable et ponctuel.",
+        "tags": ["Excellent rapport qualité/prix"]
       },
       {
-        "name": "Client",
-        "location": "Hérault",
+        "name": "Inès B.",
+        "date": "Posté le 20 déc. 2025",
+        "service": "Chauffage - Climatisation",
         "rating": 5,
-        "text": "Dépannage rapide, travail soigné. Je recommande."
+        "text": "Très professionnel. Kevin m’a installé une clim, travail propre, rapide, et honnête. Je vous recommande de faire affaire avec lui. Je n’hésiterai pas à le recontacter pour d’autres travaux.",
+        "tags": ["Très sympathique"]
       },
       {
-        "name": "Client",
-        "location": "Montpellier",
+        "name": "Jason M.",
+        "date": "Posté le 29 oct. 2025",
+        "service": "Installation électrique",
         "rating": 5,
-        "text": "Très pro, matériel identifié, chantier laissé propre."
+        "text": "Le top",
+        "tags": []
       }
     ]
   },
