@@ -541,6 +541,19 @@ function wireScrollWowGlow() {
     doc.style.setProperty("--scroll-glow-y", `${y}%`);
     doc.style.setProperty("--wow-x", `${x}%`);
     doc.style.setProperty("--wow-y", `${y}%`);
+
+    // Extra "wow": a sheen sweep that moves as you scroll
+    // (CSS uses --sheen-x to translate a highlight across cards)
+    const loops = 3; // number of sweeps from top to bottom
+    const t = (p * loops) % 1; // 0..1 repeating
+    const sheenX = Math.round(-120 + t * 260); // -120%..140%
+    doc.style.setProperty("--sheen-x", `${sheenX}%`);
+
+    // Subtle rotation for the glow layer
+    doc.style.setProperty("--wow-rot", `${Math.round(p * 360)}deg`);
+
+    // Slight background stripe drift (used by CSS as background-position)
+    doc.style.setProperty("--grid-y", `${Math.round(p * 180)}px`);
   };
 
   set();

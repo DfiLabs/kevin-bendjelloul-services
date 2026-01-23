@@ -40,6 +40,9 @@
   --wow-y: 18%;
   --wow-intensity: 0.28;
   --wow-size: 900px;
+  --wow-rot: 0deg;
+  --sheen-x: -120%;
+  --grid-y: 0px;
 }
 
 *,
@@ -121,7 +124,24 @@ body::after {
       calc(var(--wow-size) + 300px) calc(var(--wow-size) + 300px) at 70% calc(var(--wow-y) + 10%),
       rgba(255, 200, 87, 0.18),
       transparent 62%
+    ),
+    conic-gradient(
+      from var(--wow-rot) at var(--wow-x) var(--wow-y),
+      rgba(255, 255, 255, 0.14),
+      transparent 22%,
+      rgba(255, 200, 87, 0.16),
+      transparent 48%,
+      rgba(24, 213, 255, 0.14),
+      transparent 78%,
+      rgba(255, 255, 255, 0.10)
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07) 0 1px,
+      transparent 1px 14px
     );
+  background-size: auto, auto, auto, 260px 260px;
+  background-position: 0 0, 0 0, 0 0, 0 var(--grid-y);
   mix-blend-mode: screen;
   opacity: var(--wow-intensity);
   transition: opacity 0.35s var(--ease);
@@ -131,6 +151,20 @@ body::after {
   :root {
     --wow-intensity: 0.55;
     --wow-size: 1100px;
+  }
+
+  /* Make the scroll sheen more noticeable on desktop */
+  .hero-card::before {
+    opacity: 0.14;
+  }
+  .card::after {
+    opacity: 0.10;
+  }
+  .gallery-card::after {
+    opacity: 0.08;
+  }
+  .review::after {
+    opacity: 0.12;
   }
 }
 
@@ -561,6 +595,17 @@ h1 {
   box-shadow: var(--shadow);
   transform: translate3d(0, var(--py, 0px), 0);
   will-change: transform;
+  position: relative;
+}
+.gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+  transform: translateX(var(--sheen-x));
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
 .gallery-media {
   aspect-ratio: 4 / 3;
@@ -648,6 +693,17 @@ h1 {
   padding: 16px 16px;
   transform: translate3d(0, var(--py, 0px), 0);
   will-change: transform;
+  position: relative;
+}
+.review::after {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.35) 50%, transparent 58%);
+  transform: translateX(var(--sheen-x));
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 .review-top {
   display: flex;
@@ -727,6 +783,16 @@ h1 {
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
   transition: transform 0.18s ease, border-color 0.15s ease, background 0.15s ease;
   will-change: transform;
+}
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+  transform: translateX(var(--sheen-x));
+  opacity: 0.10;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
 .hero-card::after {
   content: "";
@@ -924,6 +990,16 @@ h2 {
   transform: rotate(12deg);
   pointer-events: none;
   opacity: 0.95;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+  transform: translateX(var(--sheen-x));
+  opacity: 0.06;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
 .card:hover {
   border-color: rgba(72, 198, 255, 0.22);
