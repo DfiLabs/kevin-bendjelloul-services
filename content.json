@@ -13,7 +13,7 @@
       "message": "Bonjour, je souhaite un devis / une intervention. Zone: Montpellier/Hérault. Mon besoin:"
     }
   },
-  "ctaReassurance": ["Devis clair", "Matériel identifié", "Nettoyage fin de chantier"],
+  "ctaReassurance": ["Devis clair", "Matériel identifié", "Chantier laissé propre"],
   "hero": {
     "subheadline": "Électricien à Montpellier - dépannage, mise en sécurité, éclairage",
     "photo": "https://images.pexels.com/photos/8381832/pexels-photo-8381832.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -27,7 +27,7 @@
       { "label": "Électricien habilité", "enabled": true },
       { "label": "Devis clair", "enabled": true },
       { "label": "Matériel identifié", "enabled": true },
-      { "label": "Nettoyage fin de chantier", "enabled": true }
+      { "label": "Chantier laissé propre", "enabled": true }
     ],
     "gallery": [
       {
@@ -117,17 +117,17 @@
       "fromPrice": "À partir de: sur devis"
     },
     {
-      "id": "tce",
-      "title": "Rénovation / chantier",
-      "examples": ["Chantier coordonné", "Planning + points d’avancement", "Qualité de finitions"],
-      "turnaround": "Sur planning",
-      "fromPrice": "Sur devis"
+      "id": "tableau",
+      "title": "Tableau électrique",
+      "examples": ["Diagnostic", "Remplacement si nécessaire", "Mise en sécurité"],
+      "turnaround": "Sous 2-7 jours (selon planning)",
+      "fromPrice": "À partir de: sur devis"
     },
     {
-      "id": "remise",
-      "title": "Fin de chantier",
-      "examples": ["Nettoyage fin de chantier", "Remise au propre", "Pré-remise des clés"],
-      "turnaround": "Sous 48-72h (selon surface)",
+      "id": "installation",
+      "title": "Installations",
+      "examples": ["Prises & appareillage", "Circuits dédiés", "Électricité extérieur"],
+      "turnaround": "Sous 2-7 jours (selon planning)",
       "fromPrice": "À partir de: sur devis"
     }
   ],
