@@ -660,8 +660,16 @@
                 ></textarea>
               </div>
 
+              <div class="form-row">
+                <label class="label" for="photos">Photos (optionnel)</label>
+                <input class="input input-file" id="photos" name="photos" type="file" accept="image/*" multiple data-photo-input />
+                <div class="upload-help">Astuce: sur mobile, utilisez “Envoyer avec photos” pour partager directement.</div>
+                <div class="upload-preview" data-photo-preview hidden></div>
+              </div>
+
               <div class="form-actions">
-                <button class="btn btn-primary" type="submit">Envoyer</button>
+                <button class="btn btn-primary" type="button" data-share-request hidden>Envoyer avec photos</button>
+                <button class="btn btn-ghost" type="submit">Envoyer (email)</button>
                 <button class="btn btn-ghost" type="button" data-scroll-top>Revenir en haut</button>
               </div>
               <p class="fineprint">

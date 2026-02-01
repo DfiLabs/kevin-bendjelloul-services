@@ -728,12 +728,16 @@ function wireMailtoForm() {
     const message = String(fd.get("message") || "").trim();
 
     const subject = `Demande de devis - ${name || "Client"}`;
+    const photoInput = form.querySelector("[data-photo-input]");
+    const files = photoInput instanceof HTMLInputElement && photoInput.files ? Array.from(photoInput.files) : [];
     const lines = [
       "Bonjour,",
       "",
       "Je souhaite un devis / une intervention :",
       "",
       message,
+      "",
+      files.length ? `Photos: ${files.length} fichier(s) (à joindre en pièces jointes)` : "Photos: aucune",
       "",
       "---",
       `Nom: ${name}`,
@@ -747,7 +751,120 @@ function wireMailtoForm() {
     )}`;
 
     window.location.href = href;
-    showToast("Ouverture de la messagerie…");
+    showToast(files.length ? "Messagerie ouverte. Ajoutez les photos en pièces jointes." : "Ouverture de la messagerie…");
+  });
+}
+
+function wirePhotoUpload() {
+  const form = $("[data-mailto-form]");
+  if (!(form instanceof HTMLFormElement)) return;
+
+  const input = form.querySelector("[data-photo-input]");
+  const preview = form.querySelector("[data-photo-preview]");
+  const shareBtn = form.querySelector("[data-share-request]");
+
+  if (!(input instanceof HTMLInputElement) || !(preview instanceof HTMLElement) || !(shareBtn instanceof HTMLElement)) return;
+
+  const isShareSupported = () => {
+    if (!("share" in navigator)) return false;
+    if (!("canShare" in navigator)) return true;
+    try {
+      const files = input.files ? Array.from(input.files) : [];
+      // @ts-ignore
+      return files.length ? navigator.canShare({ files }) : navigator.canShare({ text: "x" });
+    } catch {
+      return false;
+    }
+  };
+
+  if (isShareSupported()) shareBtn.removeAttribute("hidden");
+
+  const render = () => {
+    const files = input.files ? Array.from(input.files) : [];
+    preview.innerHTML = "";
+    if (!files.length) {
+      preview.setAttribute("hidden", "true");
+      return;
+    }
+    preview.removeAttribute("hidden");
+
+    files.slice(0, 6).forEach((f) => {
+      const item = document.createElement("div");
+      item.className = "upload-item";
+
+      const thumb = document.createElement("div");
+      thumb.className = "upload-thumb";
+
+      if (f.type && f.type.startsWith("image/")) {
+        const img = document.createElement("img");
+        img.alt = f.name || "Photo";
+        img.loading = "lazy";
+        img.src = URL.createObjectURL(f);
+        thumb.appendChild(img);
+      } else {
+        thumb.textContent = "Fichier";
+      }
+
+      const meta = document.createElement("div");
+      meta.className = "upload-meta";
+      meta.textContent = f.name || "Photo";
+
+      item.appendChild(thumb);
+      item.appendChild(meta);
+      preview.appendChild(item);
+    });
+
+    if (files.length > 6) {
+      const more = document.createElement("div");
+      more.className = "upload-more";
+      more.textContent = `+${files.length - 6}`;
+      preview.appendChild(more);
+    }
+  };
+
+  input.addEventListener("change", render);
+
+  shareBtn.addEventListener("click", async () => {
+    const fd = new FormData(form);
+    const name = String(fd.get("name") || "").trim();
+    const phone = String(fd.get("phone") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    const files = input.files ? Array.from(input.files) : [];
+
+    if (!files.length) {
+      showToast("Ajoutez des photos avant d’envoyer.");
+      input.focus();
+      return;
+    }
+
+    const text = [
+      "Demande de devis",
+      "",
+      message,
+      "",
+      `Nom: ${name}`,
+      `Téléphone: ${phone}`,
+      email ? `Email: ${email}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const total = files.reduce((s, f) => s + (f.size || 0), 0);
+    if (total > 24 * 1024 * 1024) showToast("Photos volumineuses: réduisez le nombre si besoin.");
+
+    try {
+      // @ts-ignore
+      if (navigator.canShare && !navigator.canShare({ files })) {
+        showToast("Partage de fichiers non supporté ici. Utilisez l’email et joignez les photos.");
+        return;
+      }
+      // @ts-ignore
+      await navigator.share({ title: "Demande de devis", text, files });
+      showToast("Partage envoyé.");
+    } catch (_) {
+      showToast("Partage annulé.");
+    }
   });
 }
 
@@ -775,6 +892,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireCopy();
   wireTilt();
   wireMailtoForm();
+  wirePhotoUpload();
   wireScrollTop();
 });
 
