@@ -463,6 +463,30 @@ function wireHeroParallax() {
     const progress = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
     const offset = Math.round((progress - 0.5) * 30); // -15..+15px
     document.documentElement.style.setProperty("--hero-parallax", `${offset}px`);
+
+    // Extra desktop wow: drive hero arcs + hero card motion by scroll
+    const doc = document.documentElement;
+    doc.style.setProperty("--hero-p", String(progress.toFixed(4)));
+    // Dash offset (faster on desktop)
+    doc.style.setProperty("--arc-dash", String(Math.round(progress * 520)));
+    // Fade arcs out as you leave the hero
+    const arcOpacity = 0.72 - Math.min(0.42, Math.abs(progress - 0.45) * 1.4);
+    doc.style.setProperty("--arc-opacity", String(Math.max(0, Math.min(0.75, arcOpacity)).toFixed(3)));
+
+    // Hero card drift (desktop only)
+    const mq = window.matchMedia("(min-width: 900px)");
+    if (mq.matches) {
+      const y = Math.round((0.5 - progress) * 22); // -11..+11px
+      const s = 1.02 - progress * 0.06; // 1.02..0.96
+      const rz = (progress - 0.5) * 2.2; // -1.1..+1.1deg
+      doc.style.setProperty("--hero-card-y", `${y}px`);
+      doc.style.setProperty("--hero-card-s", String(Math.max(0.94, Math.min(1.04, s)).toFixed(3)));
+      doc.style.setProperty("--hero-card-r", `${rz.toFixed(2)}deg`);
+    } else {
+      doc.style.setProperty("--hero-card-y", "0px");
+      doc.style.setProperty("--hero-card-s", "1");
+      doc.style.setProperty("--hero-card-r", "0deg");
+    }
   };
 
   onScroll();

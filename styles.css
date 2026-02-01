@@ -43,6 +43,12 @@
   --wow-rot: 0deg;
   --sheen-x: -120%;
   --grid-y: 0px;
+  --hero-p: 0;
+  --arc-dash: 0;
+  --arc-opacity: 0.65;
+  --hero-card-y: 0px;
+  --hero-card-s: 1;
+  --hero-card-r: 0deg;
 }
 
 *,
@@ -376,6 +382,51 @@ main {
   padding: 72px 0 40px;
   position: relative;
   overflow: hidden;
+}
+
+.hero-arcs {
+  position: absolute;
+  inset: -80px -80px auto -80px;
+  height: 640px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--arc-opacity);
+  transform: translate3d(0, calc(var(--hero-parallax, 0px) * 0.8), 0);
+  will-change: transform;
+}
+.hero-arcs svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.hero-arcs .arc {
+  fill: none;
+  stroke: url(#arc);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 14 16;
+  stroke-dashoffset: calc(var(--arc-dash) * -1px);
+  filter: url(#glow);
+  opacity: 0.9;
+}
+.hero-arcs .a2 {
+  stroke-width: 1.9;
+  opacity: 0.75;
+  stroke-dasharray: 10 18;
+  stroke-dashoffset: calc(var(--arc-dash) * -1.4px);
+}
+.hero-arcs .a3 {
+  stroke-width: 1.6;
+  opacity: 0.55;
+  stroke-dasharray: 8 20;
+  stroke-dashoffset: calc(var(--arc-dash) * -1.8px);
+}
+
+@media (max-width: 980px) {
+  .hero-arcs {
+    display: none;
+  }
 }
 
 .hero.has-hero-photo {
@@ -780,7 +831,13 @@ h1 {
   box-shadow: var(--shadow);
   overflow: hidden;
   position: relative;
-  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transform: perspective(900px)
+    translate3d(0, var(--hero-card-y, 0px), 0)
+    rotateZ(var(--hero-card-r, 0deg))
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    scale(var(--hero-card-s, 1))
+    translateZ(0);
   transition: transform 0.18s ease, border-color 0.15s ease, background 0.15s ease;
   will-change: transform;
 }
