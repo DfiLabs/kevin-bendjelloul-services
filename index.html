@@ -18,7 +18,7 @@
     <meta property="og:type" content="website" />
 
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260201-photo1" />
+    <link rel="stylesheet" href="./styles.css?v=20260201-ui2" />
 
     <script type="application/ld+json">
       {
@@ -460,107 +460,6 @@
         </div>
       </section>
 
-      <section class="section section-alt" id="mentions">
-        <div class="container">
-          <div class="section-head reveal">
-            <h2>Mentions légales</h2>
-            <p class="section-sub">Informations d’identification de l’entreprise (affichage discret).</p>
-          </div>
-
-          <details class="legal reveal">
-            <summary class="legal-summary">Afficher les informations légales</summary>
-
-            <div class="legal-grid">
-              <div class="legal-item">
-                <div class="legal-k">Dénomination</div>
-                <div class="legal-v">MONSIEUR KEVIN BENDJELLOUL</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">Forme juridique</div>
-                <div class="legal-v">Entrepreneur individuel</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">SIREN</div>
-                <div class="legal-v">990 996 720</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">SIRET (siège)</div>
-                <div class="legal-v">990 996 720 00019</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">TVA</div>
-                <div class="legal-v">FR21990996720</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">Activité (APE)</div>
-                <div class="legal-v">8121Z - Nettoyage courant des bâtiments</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">Adresse</div>
-                <div class="legal-v">Chemin des Pins d’Urbain 23, 34370 Cazouls‑lès‑Béziers</div>
-              </div>
-              <div class="legal-item">
-                <div class="legal-k">Création</div>
-                <div class="legal-v">08 septembre 2025</div>
-              </div>
-            </div>
-
-            <div class="legal-actions">
-              <a
-                class="btn btn-ghost"
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.google.com/maps/search/?api=1&query=Chemin%20des%20Pins%20d%E2%80%99Urbain%2023%2034370%20Cazouls-l%C3%A8s-B%C3%A9ziers"
-              >
-                Ouvrir l’adresse sur Maps
-              </a>
-              <button class="btn btn-ghost" type="button" data-copy="SIREN: 990 996 720 | SIRET: 990 996 720 00019 | TVA: FR21990996720">
-                Copier SIREN / SIRET / TVA
-              </button>
-            </div>
-
-            <p class="fineprint">
-              Mentions légales, confidentialité et cookies: voir les sections ci-dessous.
-            </p>
-          </details>
-        </div>
-      </section>
-
-      <section class="section" id="privacy">
-        <div class="container">
-          <div class="section-head reveal">
-            <h2>Politique de confidentialité</h2>
-            <p class="section-sub">
-              Le site est une vitrine statique. Aucun compte n’est créé et aucune donnée n’est enregistrée sur un serveur
-              via ce site.
-            </p>
-          </div>
-          <div class="section-card reveal">
-            <p class="section-sub">
-              Si vous contactez via téléphone/WhatsApp/email, les échanges restent privés et servent uniquement à traiter
-              votre demande (devis, intervention, suivi). Les données ne sont pas revendues.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-alt" id="cookies">
-        <div class="container">
-          <div class="section-head reveal">
-            <h2>Cookies</h2>
-            <p class="section-sub">
-              Ce site n’utilise pas de cookies publicitaires. Sans analytics, aucun bandeau cookies n’est nécessaire.
-            </p>
-          </div>
-          <div class="section-card reveal">
-            <p class="section-sub">
-              Si vous ajoutez plus tard des outils de mesure d’audience (analytics), mettez à jour cette section et
-              affichez un bandeau de consentement.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section class="section" id="contact">
         <div class="container">
           <div class="section-head reveal">
@@ -607,6 +506,18 @@
                 <div class="contact-v">
                   <a class="chip" href="#" data-whatsapp-link>WhatsApp</a>
                   <a class="chip" href="#" data-email-link>Envoyer un email</a>
+                </div>
+              </div>
+              <div class="contact-row">
+                <div class="contact-k">WhatsApp (QR)</div>
+                <div class="contact-v">
+                  <div class="wa-box">
+                    <img class="wa-qr" width="120" height="120" alt="QR code WhatsApp" data-wa-qr />
+                    <div class="wa-box-text">
+                      <div class="wa-box-title">Scanner pour envoyer des photos</div>
+                      <div class="wa-box-sub">Réponse rapide. Décrivez le besoin en 2 lignes.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="contact-row">
@@ -661,9 +572,26 @@
               </div>
 
               <div class="form-row">
-                <label class="label" for="photos">Photos (optionnel)</label>
-                <input class="input input-file" id="photos" name="photos" type="file" accept="image/*" multiple data-photo-input />
-                <div class="upload-help">Astuce: sur mobile, utilisez “Envoyer avec photos” pour partager directement.</div>
+                <div class="label">Photos (optionnel)</div>
+                <label class="upload-drop">
+                  <input
+                    class="upload-input"
+                    id="photos"
+                    name="photos"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    data-photo-input
+                  />
+                  <span class="upload-ui">
+                    <span class="upload-icon" aria-hidden="true"></span>
+                    <span class="upload-text">
+                      <span class="upload-title">Partager des photos</span>
+                      <span class="upload-sub">Plan large + détails. Sur mobile, “Envoyer avec photos”.</span>
+                    </span>
+                    <span class="upload-count" data-upload-count>0</span>
+                  </span>
+                </label>
                 <div class="upload-preview" data-photo-preview hidden></div>
               </div>
 
@@ -689,16 +617,90 @@
           <div class="footer-sub">Électricité - Montpellier & Hérault (34)</div>
         </div>
         <div class="footer-right">
-          <a class="footer-link" href="#mentions">Mentions légales</a>
+          <a class="footer-link" href="#legal" data-open-details="legal-details">Infos légales</a>
           <span class="footer-sep" aria-hidden="true"></span>
-          <a class="footer-link" href="#privacy">Confidentialité</a>
-          <span class="footer-sep" aria-hidden="true"></span>
-          <a class="footer-link" href="#cookies">Cookies</a>
+          <a class="footer-link" href="#legal" data-open-details="privacy-details">Confidentialité & cookies</a>
           <span class="footer-sep" aria-hidden="true"></span>
           <span class="footer-copy">© <span data-year></span></span>
         </div>
       </div>
     </footer>
+
+    <section class="section section-alt legal-bottom" id="legal">
+      <div class="container">
+        <details class="legal reveal" id="legal-details">
+          <summary class="legal-summary">Infos légales</summary>
+
+          <div class="legal-grid">
+            <div class="legal-item">
+              <div class="legal-k">Dénomination</div>
+              <div class="legal-v">MONSIEUR KEVIN BENDJELLOUL</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">Forme juridique</div>
+              <div class="legal-v">Entrepreneur individuel</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">SIREN</div>
+              <div class="legal-v">990 996 720</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">SIRET (siège)</div>
+              <div class="legal-v">990 996 720 00019</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">TVA</div>
+              <div class="legal-v">FR21990996720</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">Activité (APE)</div>
+              <div class="legal-v">8121Z - Nettoyage courant des bâtiments</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">Adresse</div>
+              <div class="legal-v">Chemin des Pins d’Urbain 23, 34370 Cazouls‑lès‑Béziers</div>
+            </div>
+            <div class="legal-item">
+              <div class="legal-k">Création</div>
+              <div class="legal-v">08 septembre 2025</div>
+            </div>
+          </div>
+
+          <div class="legal-actions">
+            <a
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.google.com/maps/search/?api=1&query=Chemin%20des%20Pins%20d%E2%80%99Urbain%2023%2034370%20Cazouls-l%C3%A8s-B%C3%A9ziers"
+            >
+              Ouvrir l’adresse sur Maps
+            </a>
+            <button class="btn btn-ghost" type="button" data-copy="SIREN: 990 996 720 | SIRET: 990 996 720 00019 | TVA: FR21990996720">
+              Copier SIREN / SIRET / TVA
+            </button>
+          </div>
+        </details>
+
+        <details class="legal reveal" id="privacy-details">
+          <summary class="legal-summary">Confidentialité & cookies</summary>
+          <div class="section-card" style="margin-top: 12px">
+            <p class="section-sub">
+              Le site est une vitrine statique. Aucun compte n’est créé et aucune donnée n’est enregistrée sur un serveur
+              via ce site.
+            </p>
+            <p class="section-sub">
+              Si vous contactez via téléphone/WhatsApp/email, les échanges restent privés et servent uniquement à traiter
+              votre demande (devis, intervention, suivi). Les données ne sont pas revendues.
+            </p>
+            <p class="section-sub">
+              Ce site n’utilise pas de cookies publicitaires. Sans analytics, aucun bandeau cookies n’est nécessaire. Si
+              vous ajoutez plus tard des outils de mesure d’audience (analytics), mettez à jour cette section et affichez
+              un bandeau de consentement.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
 
     <div class="mobile-cta" aria-label="Actions rapides">
       <a class="btn btn-primary" href="tel:+33632637723" data-phone-link>Appeler</a>
@@ -708,7 +710,7 @@
 
     <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast></div>
 
-    <script src="./main.js?v=20260201-photo1"></script>
+    <script src="./main.js?v=20260201-ui2"></script>
   </body>
 </html>
 

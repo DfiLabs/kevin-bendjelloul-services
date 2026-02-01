@@ -330,6 +330,14 @@ function applyContactConfig() {
     a.rel = "noreferrer";
   });
 
+  // WhatsApp QR (optional)
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(waUrl)}`;
+  $all("img[data-wa-qr]").forEach((img) => {
+    img.src = qrUrl;
+    img.loading = "lazy";
+    img.decoding = "async";
+  });
+
   // Update copy chips for placeholders
   $all("button[data-copy]").forEach((btn) => {
     const v = String(btn.getAttribute("data-copy") || "");
@@ -762,6 +770,7 @@ function wirePhotoUpload() {
   const input = form.querySelector("[data-photo-input]");
   const preview = form.querySelector("[data-photo-preview]");
   const shareBtn = form.querySelector("[data-share-request]");
+  const countEl = form.querySelector("[data-upload-count]");
 
   if (!(input instanceof HTMLInputElement) || !(preview instanceof HTMLElement) || !(shareBtn instanceof HTMLElement)) return;
 
@@ -782,6 +791,8 @@ function wirePhotoUpload() {
   const render = () => {
     const files = input.files ? Array.from(input.files) : [];
     preview.innerHTML = "";
+    if (countEl instanceof HTMLElement) countEl.textContent = String(files.length || 0);
+    if (shareBtn instanceof HTMLButtonElement) shareBtn.disabled = files.length === 0;
     if (!files.length) {
       preview.setAttribute("hidden", "true");
       return;
@@ -868,6 +879,22 @@ function wirePhotoUpload() {
   });
 }
 
+function wireLegalLinks() {
+  document.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    const a = t.closest("a[data-open-details]");
+    if (!a) return;
+    const id = a.getAttribute("data-open-details");
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!(el instanceof HTMLDetailsElement)) return;
+    e.preventDefault();
+    el.open = true;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 function wireScrollTop() {
   $all("[data-scroll-top]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -893,6 +920,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireTilt();
   wireMailtoForm();
   wirePhotoUpload();
+  wireLegalLinks();
   wireScrollTop();
 });
 
