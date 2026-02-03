@@ -560,7 +560,8 @@ function wireChargeStory() {
 
     const set = (el, x, y, s, rot, z) => {
       el.style.zIndex = String(z);
-      el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(${s})`;
+      // Keep the card centered, then apply our offsets.
+      el.style.transform = `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(${s})`;
     };
 
     const t = p;

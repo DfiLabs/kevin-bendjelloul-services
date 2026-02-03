@@ -955,7 +955,7 @@ h1 {
   overflow: hidden;
   position: relative;
   transform: perspective(900px)
-    translate3d(0, var(--hero-card-y, 0px), 0)
+    translate3d(0, calc(var(--hero-card-y, 0px) + var(--py, 0px)), 0)
     rotateZ(var(--hero-card-r, 0deg))
     rotateX(var(--rx, 0deg))
     rotateY(var(--ry, 0deg))
