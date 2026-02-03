@@ -49,6 +49,8 @@
   --hero-card-y: 0px;
   --hero-card-s: 1;
   --hero-card-r: 0deg;
+  --charge-p: 0;
+  --charge-dash: 920px;
 }
 
 *,
@@ -607,6 +609,127 @@ h1 {
 .band {
   padding: 72px 0;
 }
+
+/* Scroll story (electric) — desktop wow */
+.charge-story {
+  padding: 56px 0 10px;
+}
+.charge-stage {
+  height: 165vh;
+  position: relative;
+}
+.charge-sticky {
+  position: sticky;
+  top: 106px;
+  height: 540px;
+  border-radius: 26px;
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  background: radial-gradient(1100px 560px at 22% 18%, rgba(72, 198, 255, 0.14), transparent 62%),
+    radial-gradient(1100px 560px at 82% 22%, rgba(255, 200, 87, 0.10), transparent 62%),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 40px 120px rgba(2, 6, 23, 0.16);
+  overflow: hidden;
+  isolation: isolate;
+}
+.charge-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 620px at 20% 10%, rgba(26, 124, 255, 0.10), transparent 62%),
+    radial-gradient(900px 620px at 85% 25%, rgba(24, 213, 255, 0.08), transparent 62%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0 1px, transparent 1px 16px);
+  opacity: calc(0.42 + var(--charge-p) * 0.18);
+  pointer-events: none;
+  z-index: 0;
+}
+.charge-rail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.95;
+}
+.charge-rail svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.charge-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.charge-path.back {
+  stroke: rgba(2, 6, 23, 0.14);
+  stroke-width: 2.4;
+  opacity: 0.45;
+}
+.charge-path.front {
+  stroke: url(#charge);
+  stroke-width: 3.0;
+  filter: url(#chargeGlow);
+  stroke-dasharray: 920px;
+  stroke-dashoffset: var(--charge-dash);
+  opacity: calc(0.35 + var(--charge-p) * 0.55);
+}
+
+.charge-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.charge-card {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(540px, 86%);
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 22px;
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 26px 80px rgba(2, 6, 23, 0.16);
+  overflow: hidden;
+  will-change: transform;
+}
+.charge-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(1.12) contrast(1.06);
+}
+.charge-card::after {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.60) 50%, transparent 58%);
+  transform: translateX(var(--sheen-x));
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+.charge-cap {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(2, 6, 23, 0.10);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.10);
+  font-weight: 820;
+  font-size: 13px;
+  letter-spacing: -0.15px;
+}
+
+@media (max-width: 900px) {
+  .charge-story {
+    display: none;
+  }
+}
+
 .band-proof {
   background: rgba(255, 255, 255, 0.72);
   border-top: 1px solid rgba(2, 6, 23, 0.08);

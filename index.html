@@ -18,7 +18,7 @@
     <meta property="og:type" content="website" />
 
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260201-wow1" />
+    <link rel="stylesheet" href="./styles.css?v=20260203-wow2" />
 
     <script type="application/ld+json">
       {
@@ -229,6 +229,68 @@
               <button class="mini-link" type="button" data-copy="Chemin des Pins d’Urbain 23, 34370 Cazouls‑lès‑Béziers">
                 Copier l’adresse
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="charge-story" aria-label="Effet de défilement">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Du diagnostic au rendu propre</h2>
+            <p class="section-sub">Un effet visuel au scroll (desktop) — sans blabla.</p>
+          </div>
+
+          <div class="charge-stage" data-charge-stage>
+            <div class="charge-sticky">
+              <div class="charge-rail" aria-hidden="true">
+                <svg viewBox="0 0 1200 420" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="charge" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="rgba(24, 213, 255, 0.0)" />
+                      <stop offset="0.18" stop-color="rgba(24, 213, 255, 0.95)" />
+                      <stop offset="0.52" stop-color="rgba(72, 198, 255, 0.75)" />
+                      <stop offset="0.82" stop-color="rgba(255, 200, 87, 0.85)" />
+                      <stop offset="1" stop-color="rgba(255, 200, 87, 0.0)" />
+                    </linearGradient>
+                    <filter id="chargeGlow" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="2.2" result="b" />
+                      <feColorMatrix
+                        in="b"
+                        type="matrix"
+                        values="
+                          1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          0 0 0 0.85 0"
+                        result="c"
+                      />
+                      <feMerge>
+                        <feMergeNode in="c" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <path class="charge-path back" d="M-40,290 C170,140 400,340 620,220 C800,125 980,210 1240,90" />
+                  <path class="charge-path front" d="M-40,290 C170,140 400,340 620,220 C800,125 980,210 1240,90" />
+                </svg>
+              </div>
+
+              <div class="charge-stack" aria-hidden="true">
+                <div class="charge-card c1" data-charge-card>
+                  <img loading="lazy" alt="Diagnostic électrique" data-charge-shot="0" />
+                  <div class="charge-cap">Diagnostic</div>
+                </div>
+                <div class="charge-card c2" data-charge-card>
+                  <img loading="lazy" alt="Mise en sécurité" data-charge-shot="1" />
+                  <div class="charge-cap">Mise en sécurité</div>
+                </div>
+                <div class="charge-card c3" data-charge-card>
+                  <img loading="lazy" alt="Finition propre" data-charge-shot="2" />
+                  <div class="charge-cap">Finition propre</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -744,7 +806,7 @@
 
     <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast></div>
 
-    <script src="./main.js?v=20260201-wow1"></script>
+    <script src="./main.js?v=20260203-wow2"></script>
   </body>
 </html>
 

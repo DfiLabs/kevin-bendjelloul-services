@@ -165,6 +165,21 @@ function applyContentJson(content) {
       });
     }
 
+    // Charge story shots (sticky stack): reuse first gallery shots
+    const chargeStage = document.querySelector("[data-charge-stage]");
+    if (chargeStage && Array.isArray(proof.gallery)) {
+      const shots = Array.from(chargeStage.querySelectorAll("img[data-charge-shot]"));
+      shots.forEach((img) => {
+        const idx = Number.parseInt(String(img.getAttribute("data-charge-shot") || "0"), 10);
+        const g = proof.gallery[idx];
+        if (!g || typeof g !== "object") return;
+        const src = typeof g.src === "string" ? g.src : "";
+        const alt = typeof g.alt === "string" && g.alt.trim() ? g.alt.trim() : typeof g.title === "string" ? g.title : "Réalisation";
+        if (src && src.trim()) img.src = src;
+        img.alt = alt;
+      });
+    }
+
     // Testimonials
     const reviews = document.querySelector("[data-testimonials]");
     if (reviews && Array.isArray(proof.testimonials)) {
@@ -504,6 +519,63 @@ function wireHeroParallax() {
     },
     { passive: true }
   );
+}
+
+function clamp01(x) {
+  return Math.max(0, Math.min(1, x));
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function wireChargeStory() {
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  const mq = window.matchMedia("(min-width: 900px)");
+  if (!mq.matches) return;
+
+  const stage = document.querySelector("[data-charge-stage]");
+  if (!(stage instanceof HTMLElement)) return;
+
+  const cards = Array.from(stage.querySelectorAll("[data-charge-card]"));
+  if (!cards.length) return;
+
+  let raf = 0;
+  const tick = () => {
+    raf = 0;
+    const r = stage.getBoundingClientRect();
+    const vh = Math.max(1, window.innerHeight);
+    const p = clamp01((vh * 0.72 - r.top) / Math.max(1, r.height - vh * 0.35));
+
+    const doc = document.documentElement;
+    doc.style.setProperty("--charge-p", p.toFixed(4));
+    doc.style.setProperty("--charge-dash", `${Math.round((1 - p) * 920)}px`);
+
+    // Card stack motion: subtle, premium (not template)
+    const c1 = cards[0];
+    const c2 = cards[1] || cards[0];
+    const c3 = cards[2] || cards[1] || cards[0];
+
+    const set = (el, x, y, s, rot, z) => {
+      el.style.zIndex = String(z);
+      el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(${s})`;
+    };
+
+    const t = p;
+    set(c1, lerp(-58, -14, t), lerp(18, -6, t), lerp(1.06, 1.0, t), lerp(-6.6, -1.2, t), 3);
+    set(c2, lerp(70, 18, t), lerp(54, 10, t), lerp(1.03, 0.985, t), lerp(6.2, 1.4, t), 2);
+    set(c3, lerp(-10, 0, t), lerp(122, 46, t), lerp(1.0, 0.965, t), lerp(-2.2, 1.2, t), 1);
+  };
+
+  const onScroll = () => {
+    if (!raf) raf = window.requestAnimationFrame(tick);
+  };
+
+  tick();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
 }
 
 function wireElementParallax() {
@@ -936,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireReveal();
   wireSpotlight();
   wireHeroParallax();
+  wireChargeStory();
   wireElementParallax();
   wireScrollWowGlow();
   wireNav();
