@@ -109,6 +109,13 @@
       "fromPrice": "À partir de: sur devis"
     },
     {
+      "id": "electromeca",
+      "title": "Électromécanique (relevage / pompes)",
+      "examples": ["Poste de relevage", "Pompe de forage", "Contrôle / diagnostic (selon cas)"],
+      "turnaround": "Selon urgence / accès",
+      "fromPrice": "Ordre de prix: sur devis"
+    },
+    {
       "id": "securite",
       "title": "Mise en sécurité / conformité",
       "examples": ["Contrôle & diagnostic", "Remise en conformité (selon cas)", "Conseils et explications claires"],
@@ -135,6 +142,13 @@
       "examples": ["Prises & appareillage", "Circuits dédiés", "Électricité extérieur"],
       "turnaround": "Sous 2-7 jours (selon planning)",
       "fromPrice": "À partir de: sur devis"
+    },
+    {
+      "id": "soufflage",
+      "title": "Soufflage de gaines / azote",
+      "examples": ["Soufflage de gaines", "Dispersion d’azote", "Contrôle / passage (selon cas)"],
+      "turnaround": "Selon chantier",
+      "fromPrice": "Ordre de prix: sur devis"
     }
   ],
   "legal": {
