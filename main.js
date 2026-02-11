@@ -6,6 +6,7 @@ const CONFIG = {
   email: "kevin.benjelloul@gmail.com",
   publishEmailInSchema: false,
   whatsappEnabled: true,
+  whatsappTel: "+33767647525",
   whatsappMessage: "Bonjour, je souhaite un devis / une intervention. Zone: Montpellier/Hérault. Mon besoin:",
 };
 
@@ -59,6 +60,7 @@ function applyContentJson(content) {
     if (typeof c.publishEmailInSchema === "boolean") CONFIG.publishEmailInSchema = c.publishEmailInSchema;
     if (c.whatsapp && typeof c.whatsapp === "object") {
       if (typeof c.whatsapp.enabled === "boolean") CONFIG.whatsappEnabled = c.whatsapp.enabled;
+      if (typeof c.whatsapp.phoneTel === "string") CONFIG.whatsappTel = c.whatsapp.phoneTel;
       if (typeof c.whatsapp.message === "string") CONFIG.whatsappMessage = c.whatsapp.message;
     }
   }
@@ -332,7 +334,8 @@ function applyContactConfig() {
   });
 
   // WhatsApp links (optional)
-  const digits = CONFIG.phoneTel.replace(/[^\d+]/g, "").replace("+", "");
+  const waTel = String(CONFIG.whatsappTel || CONFIG.phoneTel || "");
+  const digits = waTel.replace(/[^\d+]/g, "").replace("+", "");
   const waUrl = `https://wa.me/${encodeURIComponent(digits)}?text=${encodeURIComponent(CONFIG.whatsappMessage || "")}`;
   $all("a[data-whatsapp-link]").forEach((a) => {
     if (!CONFIG.whatsappEnabled) {

@@ -10,6 +10,7 @@
     "publishEmailInSchema": false,
     "whatsapp": {
       "enabled": true,
+      "phoneTel": "+33767647525",
       "message": "Bonjour, je souhaite un devis / une intervention. Zone: Montpellier/Hérault. Mon besoin:"
     }
   },
